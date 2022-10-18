@@ -7,7 +7,7 @@ permissionset 70100 "EVT PermissionSet"
         tabledata "EVT License Setup" = RMID,
         table "EVT Customer License" = X,
         tabledata "EVT Customer License" = RMID,
-        page "EVT License Setup list" = X,
+        page "EVT License Setup" = X,
         tabledata "EVT License Entry" = RMID,
         table "EVT License Entry" = X;
 }

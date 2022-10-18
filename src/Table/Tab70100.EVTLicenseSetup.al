@@ -23,7 +23,7 @@ table 70100 "EVT License Setup"
         {
             Caption = 'Serial Number';
             DataClassification = CustomerContent;
-            // TableRelation = "No. Series";
+            TableRelation = "No. Series";
         }
     }
     keys
