@@ -1,4 +1,4 @@
-enum 50101 "EVT Action type"
+enum 70101 "EVT Action type"
 {
     Extensible = true;
 

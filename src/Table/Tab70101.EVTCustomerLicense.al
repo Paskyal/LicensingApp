@@ -1,4 +1,4 @@
-table 50101 "EVT Customer License"
+table 70101 "EVT Customer License"
 {
     Caption = 'Customer License';
     DataClassification = ToBeClassified;
@@ -82,9 +82,26 @@ table 50101 "EVT Customer License"
             Clustered = true;
         }
     }
+    trigger OnInsert()
+    begin
+        InitInsert();
+    end;
+
+    procedure InitInsert()
+    begin
+        if "License No." = '' then begin
+            TestNoSeries();
+            NoSeriesMgt.InitSeries(GetNoSeriesCode(), xRec."No. Series", 0D, "License No.", "No. Series");
+        end;
+    end;
+
+    local procedure TestNoSeries()
+    begin
+        GetLicenseSetup();
+        LicenseSetup.Testfield("License Serial Nos");
+    end;
+
     local procedure GetLicenseSetup()
-    var
-        LicenseSetup: Record "EVT License Setup";
     begin
         if LicenseSetup.Get() then
             exit;
@@ -94,12 +111,11 @@ table 50101 "EVT Customer License"
     end;
 
     procedure GetNoSeriesCode(): Code[20]
-    var
-        LicenseSetup: Record "EVT License Setup";
     begin
         exit(NoSeriesMgt.GetNoSeriesWithCheck(LicenseSetup."License Serial Nos", false, "No. Series"));
     end;
 
     var
+        LicenseSetup: Record "EVT License Setup";
         NoSeriesMgt: codeunit NoSeriesManagement;
 }

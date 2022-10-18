@@ -1,4 +1,4 @@
-table 50100 "EVT License Setup"
+table 70100 "EVT License Setup"
 {
     Caption = 'License Setup';
     DataClassification = CustomerContent;

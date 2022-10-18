@@ -1,4 +1,4 @@
-enum 50100 "EVT Status"
+enum 70100 "EVT Status"
 {
     Extensible = true;
 

@@ -1,4 +1,4 @@
-page 50101 "EVT License Entry List"
+page 70101 "EVT License Entry List"
 {
     ApplicationArea = All;
     Caption = 'License Entry List';

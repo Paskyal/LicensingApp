@@ -1,4 +1,4 @@
-table 50102 "EVT License Entry"
+table 70102 "EVT License Entry"
 {
     Caption = 'License Entry';
     DataClassification = ToBeClassified;
