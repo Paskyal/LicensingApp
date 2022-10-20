@@ -1,11 +1,12 @@
-page 70103 "EVT Customer License list"
+page 70103 "EVT Customer License"
 {
     ApplicationArea = All;
-    Caption = 'Customer License list';
+    Caption = 'Customer License';
     PageType = List;
     SourceTable = "EVT Customer License";
-    CardPageId = "EVT Customer License";
+    CardPageId = "EVT Customer License Card";
     UsageCategory = Administration;
+    Editable = false;
 
     layout
     {
@@ -58,19 +59,15 @@ page 70103 "EVT Customer License list"
                     ToolTip = 'Specifies the value of the Module 3 field.';
                     ApplicationArea = All;
                 }
-                field("License file"; Rec."License file")
+                field("License file"; Rec."License File".HasValue)
                 {
+                    Caption = 'License file';
                     ToolTip = 'Specifies the value of the License file field.';
                     ApplicationArea = All;
                 }
                 field(Status; Rec.Status)
                 {
                     ToolTip = 'Specifies the value of the Status field.';
-                    ApplicationArea = All;
-                }
-                field("No. Series"; Rec."No. Series")
-                {
-                    ToolTip = 'Specifies the value of the No. Series field.';
                     ApplicationArea = All;
                 }
             }

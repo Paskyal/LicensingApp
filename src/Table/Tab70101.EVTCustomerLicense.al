@@ -21,11 +21,25 @@ table 70101 "EVT Customer License"
         {
             Caption = 'Customer No.';
             DataClassification = CustomerContent;
+            TableRelation = Customer;
+            trigger OnValidate()
+            begin
+                // Customer.Get("Customer No.");
+                Rec.Validate("Customer Name")
+            end;
         }
         field(3; "Customer Name"; Text[100])
         {
             Caption = 'Customer Name';
             DataClassification = CustomerContent;
+            trigger OnValidate()
+            var
+                CustomerName: Text[100];
+            begin
+                CustomerName := "Customer Name";
+                SetCustomerName(CustomerName);
+                "Customer Name" := CustomerName;
+            end;
         }
         field(4; "Issue Date"; Date)
         {
@@ -37,7 +51,7 @@ table 70101 "EVT Customer License"
             Caption = 'Expiration Date';
             DataClassification = CustomerContent;
         }
-        field(6; "Tenant Id"; Integer)
+        field(6; "Tenant Id"; Text[250])
         {
             Caption = 'Tenant Id';
             DataClassification = CustomerContent;
@@ -57,9 +71,9 @@ table 70101 "EVT Customer License"
             Caption = 'Module 3';
             DataClassification = CustomerContent;
         }
-        field(10; "License file"; Blob)
+        field(10; "License File"; Blob)
         {
-            Caption = 'License file';
+            Caption = 'License File';
             DataClassification = CustomerContent;
         }
         field(11; Status; Enum "EVT Status")
@@ -73,6 +87,11 @@ table 70101 "EVT Customer License"
             DataClassification = CustomerContent;
             Editable = false;
             TableRelation = "No. Series";
+        }
+        field(13; SignatureBase64; Blob)
+        {
+            Caption = 'Encrypted Data';
+            DataClassification = CustomerContent;
         }
     }
     keys
@@ -113,6 +132,45 @@ table 70101 "EVT Customer License"
     procedure GetNoSeriesCode(): Code[20]
     begin
         exit(NoSeriesMgt.GetNoSeriesWithCheck(LicenseSetup."License Serial Nos", false, "No. Series"));
+    end;
+
+    procedure LookupCustomerName(): Boolean
+    var
+        Customer: Record Customer;
+    begin
+        if LookupCustomer(Customer) then
+            Rec.Validate("Customer No.", Customer."No.");
+        exit(true);
+    end;
+
+    procedure LookupCustomer(var Customer: Record Customer): Boolean
+    var
+        CustomerLookup: page "Customer Lookup";
+        Result: Boolean;
+    begin
+        CustomerLookup.SetTableView(Customer);
+        CustomerLookup.SetRecord(Customer);
+        CustomerLookup.LookupMode := true;
+        Result := CustomerLookup.RunModal() = ACTION::LookupOK;
+        if Result then
+            CustomerLookup.GetRecord(Customer)
+        else
+            Clear(Customer);
+        exit(Result);
+    end;
+
+    procedure SetCustomerName(var CustomerName: Text[100]): Boolean
+    var
+        Customer: Record Customer;
+    begin
+        if "Customer No." <> '' then
+            Customer.Get("Customer No.");
+
+        if Rec."Customer Name" = Customer.Name then
+            CustomerName := ''
+        else
+            CustomerName := Customer.Name;
+        exit(true);
     end;
 
     var

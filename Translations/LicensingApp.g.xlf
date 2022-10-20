@@ -28,10 +28,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - Field Issue Date - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 1871836828 - Field 1421812463 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>License file</source>
+        <trans-unit id="Table 1871836828 - Field 1977496271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>License File</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - Field License file - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - Field License File - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1871836828 - Field 280903592 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>License No.</source>
@@ -57,6 +57,11 @@
           <source>No. Series</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - Field No. Series - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1871836828 - Field 78507125 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Encrypted Data</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - Field SignatureBase64 - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1871836828 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Status</source>
@@ -173,11 +178,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Control Module 3 - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1871836828 - Control 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the No. Series field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Control No. Series - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 1871836828 - Control 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Status field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -188,70 +188,95 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Control Tenant Id - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Customer License list</source>
+        <trans-unit id="Page 3975096360 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer License Card</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 1171137197 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 1171137197 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Customer Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Customer Name - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Customer Name - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 4190130733 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 4190130733 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Customer No. field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Customer No. - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Customer No. - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 1579714849 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 1579714849 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Expiration Date field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Expiration Date - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Expiration Date - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 219695063 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 219695063 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Issue Date field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Issue Date - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Issue Date - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 1421812463 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 1977496271 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the License file field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control License file - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control License File - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 280903592 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 1977496271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>License File</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control License File - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - Control 280903592 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the License No. field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control License No. - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control License No. - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 2235156157 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 2235156157 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Module 1 field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Module 1 - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Module 1 - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 1597459540 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 1597459540 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Module 2 field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Module 2 - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Module 2 - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 959762923 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 959762923 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Module 3 field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Module 3 - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Module 3 - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 1351594800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the No. Series field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control No. Series - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Status field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Status - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Status - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1270034574 - Control 588430355 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 3975096360 - Control 588430355 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Tenant Id field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License list - Control Tenant Id - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control Tenant Id - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - Action 670447066 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sends Email</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Action &amp;SendEmail - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - Action 670447066 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send license</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Action &amp;SendEmail - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - Action 670447066 - Method 1377591017 - NamedType 1885249418" size-unit="char" translate="yes" xml:space="preserve">
+          <source>License.xml</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Action &amp;SendEmail - Method OnAction - NamedType AttachmentNameTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - Action 883090068 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Generates Licensing Xml</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Action GenerateLicense - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - Action 883090068 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Generate license</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Action GenerateLicense - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2431026158 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>License Entry List</source>
@@ -312,6 +337,46 @@
           <source>Serial Numbers</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT License Setup - Control Serial Nos - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2160354053 - Action 3270200120 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Downloads a Public Key file</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT License Setup - Action DownloadPubKey - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2160354053 - Action 3270200120 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Download Public Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT License Setup - Action DownloadPubKey - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2160354053 - Action 54203531 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Uploads Private and Public Key files</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT License Setup - Action ImportKeys - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2160354053 - Action 54203531 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import Keys</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT License Setup - Action ImportKeys - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2160354053 - Action 54203531 - Method 1377591017 - NamedType 4161182907" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Xml Files|*.xml</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT License Setup - Action ImportKeys - Method OnAction - NamedType ExtFilterTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 2160354053 - Action 54203531 - Method 1377591017 - NamedType 172456838" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select a Private Key file</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT License Setup - Action ImportKeys - Method OnAction - NamedType SelectPrivKeyTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 2160354053 - Action 54203531 - Method 1377591017 - NamedType 40426372" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select a Public Key file</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT License Setup - Action ImportKeys - Method OnAction - NamedType SelectPubKeyTxt</note>
+        </trans-unit>
+        <trans-unit id="XmlPort 2668000260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LicenseExport</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">XmlPort EVT LicenseExport - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3580118723 - EnumValue 2271849816 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source> Download</source>
