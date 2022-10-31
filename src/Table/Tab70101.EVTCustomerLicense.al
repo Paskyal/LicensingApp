@@ -2,7 +2,6 @@ table 70101 "EVT Customer License"
 {
     Caption = 'Customer License';
     DataClassification = ToBeClassified;
-
     fields
     {
         field(1; "License No."; Code[20])
@@ -24,7 +23,6 @@ table 70101 "EVT Customer License"
             TableRelation = Customer;
             trigger OnValidate()
             begin
-                // Customer.Get("Customer No.");
                 Rec.Validate("Customer Name")
             end;
         }
@@ -46,51 +44,69 @@ table 70101 "EVT Customer License"
             Caption = 'Issue Date';
             DataClassification = CustomerContent;
         }
-        field(5; "Expiration Date"; Date)
+        field(5; "Starting Date"; Date)
+        {
+            Caption = 'Starting Date';
+            DataClassification = CustomerContent;
+        }
+        field(6; "Expiration Date"; Date)
         {
             Caption = 'Expiration Date';
             DataClassification = CustomerContent;
         }
-        field(6; "Tenant Id"; Text[250])
+        field(7; "Tenant Id"; Text[250])
         {
             Caption = 'Tenant Id';
             DataClassification = CustomerContent;
         }
-        field(7; "Module 1"; Boolean)
+        field(8; "Module 1"; Boolean)
         {
             Caption = 'Module 1';
             DataClassification = CustomerContent;
         }
-        field(8; "Module 2"; Boolean)
+        field(9; "Module 2"; Boolean)
         {
             Caption = 'Module 2';
             DataClassification = CustomerContent;
         }
-        field(9; "Module 3"; Boolean)
+        field(10; "Module 3"; Boolean)
         {
             Caption = 'Module 3';
             DataClassification = CustomerContent;
         }
-        field(10; "License File"; Blob)
+        field(11; "License File"; Blob)
         {
             Caption = 'License File';
             DataClassification = CustomerContent;
+            trigger OnValidate()
+            begin
+                if "License File".HasValue then
+                    Status := "EVT Status"::" Issued"
+                else
+                    Status := "EVT Status"::New;
+                Rec.Modify();
+            end;
         }
-        field(11; Status; Enum "EVT Status")
+        field(12; Status; Enum "EVT Status")
         {
             Caption = 'Status';
             DataClassification = CustomerContent;
         }
-        field(12; "No. Series"; Code[20])
+        field(13; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             DataClassification = CustomerContent;
             Editable = false;
             TableRelation = "No. Series";
         }
-        field(13; SignatureBase64; Blob)
+        field(14; SignatureBase64; Blob)
         {
             Caption = 'Encrypted Data';
+            DataClassification = CustomerContent;
+        }
+        field(15; CustomerEmail; Text[100])
+        {
+            Caption = 'Customer Email';
             DataClassification = CustomerContent;
         }
     }
@@ -171,6 +187,60 @@ table 70101 "EVT Customer License"
         else
             CustomerName := Customer.Name;
         exit(true);
+    end;
+
+    procedure CreateLicenseEntriesStausDownload(var LicenseEntry: Record "EVT License Entry")
+    begin
+        if LicenseEntry.IsEmpty() then
+            LicenseEntry.Insert();
+        LicenseEntry.FindLast();
+        LicenseEntry."Entry No." := LicenseEntry."Entry No." + 1;
+        LicenseEntry."License No." := Rec."License No.";
+        LicenseEntry."Customer No." := Rec."Customer No.";
+        LicenseEntry."Customer Name" := Rec."Customer Name";
+        LicenseEntry."Email address" := '';
+        LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
+        // LicenseEntry."Created At" := CurrentDateTime;
+        LicenseEntry."Action type" := Rec.Status::" Download";
+        LicenseEntry."Performed By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Performed By"));
+        LicenseEntry."Performed At" := CurrentDateTime;
+        LicenseEntry.Insert();
+    end;
+
+    procedure CreateLicenseEntriesStausSent(var LicenseEntry: Record "EVT License Entry")
+    begin
+        if LicenseEntry.IsEmpty() then
+            LicenseEntry.Insert();
+        LicenseEntry.FindLast();
+        LicenseEntry."Entry No." := LicenseEntry."Entry No." + 1;
+        LicenseEntry."License No." := Rec."License No.";
+        LicenseEntry."Customer No." := Rec."Customer No.";
+        LicenseEntry."Customer Name" := Rec."Customer Name";
+        LicenseEntry."Email address" := Rec.CustomerEmail;
+        LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
+        // LicenseEntry."Created At" := CurrentDateTime;
+        LicenseEntry."Action type" := Rec.Status::" Sent";
+        LicenseEntry."Performed By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Performed By"));
+        LicenseEntry."Performed At" := CurrentDateTime;
+        LicenseEntry.Insert();
+    end;
+
+    procedure CreateLicenseEntriesGenerateLicense(var LicenseEntry: Record "EVT License Entry")
+    begin
+        if LicenseEntry.IsEmpty() then
+            LicenseEntry.Insert();
+        LicenseEntry.FindLast();
+        LicenseEntry."Entry No." := LicenseEntry."Entry No." + 1;
+        LicenseEntry."License No." := Rec."License No.";
+        LicenseEntry."Customer No." := Rec."Customer No.";
+        LicenseEntry."Customer Name" := Rec."Customer Name";
+        LicenseEntry."Email address" := '';
+        LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
+        LicenseEntry."Created At" := CurrentDateTime;
+        LicenseEntry."Action type" := Rec.Status::" Generated";
+        LicenseEntry."Performed By" := '';
+        LicenseEntry."Performed At" := 0DT;
+        LicenseEntry.Insert();
     end;
 
     var

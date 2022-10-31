@@ -2,7 +2,6 @@ table 70100 "EVT License Setup"
 {
     Caption = 'License Setup';
     DataClassification = CustomerContent;
-
     fields
     {
         field(1; PK; Code[20])

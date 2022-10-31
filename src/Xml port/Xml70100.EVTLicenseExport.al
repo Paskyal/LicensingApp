@@ -34,7 +34,6 @@ xmlport 70100 "EVT LicenseExport"
                 Convert: Codeunit "Base64 Convert";
                 PubKeyInStr: InStream;
                 SignatureInStr: InStream;
-                KeyTxt: Text;
                 SignatureTxt: Text;
                 PubKeyBase64: Text;
             begin

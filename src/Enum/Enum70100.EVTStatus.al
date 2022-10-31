@@ -10,4 +10,16 @@ enum 70100 "EVT Status"
     {
         Caption = ' Issued';
     }
+    value(2; " Sent")
+    {
+        Caption = ' Sent';
+    }
+    value(3; " Download")
+    {
+        Caption = ' Downloaded';
+    }
+    value(4; " Generated")
+    {
+        Caption = ' Generated';
+    }
 }

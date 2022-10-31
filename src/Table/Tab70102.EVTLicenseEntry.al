@@ -5,24 +5,56 @@ table 70102 "EVT License Entry"
 
     fields
     {
-        field(1; "Entry No."; Code[20])
+        field(10; "Entry No."; Integer)
         {
             Caption = 'Entry No.';
             DataClassification = CustomerContent;
+            AutoIncrement = true;
         }
-        field(2; "Action type"; enum "EVT Action type")
+        field(11; "License No."; Text[20])
         {
-            Caption = 'Action type';
+            Caption = 'License No.';
             DataClassification = CustomerContent;
         }
-        field(3; "Email address"; Text[100])
+        field(12; "Customer No."; Code[20])
+        {
+            Caption = 'Customer No.';
+            TableRelation = Customer;
+            DataClassification = CustomerContent;
+        }
+        field(13; "Customer Name"; Text[75])
+        {
+            Caption = 'Customer Name';
+            DataClassification = CustomerContent;
+        }
+        field(14; "Email address"; Text[50])
         {
             Caption = 'Email address';
             DataClassification = CustomerContent;
         }
-        field(4; Recipients; Text[1024])
+        field(15; "Created By"; Text[50])
         {
-            Caption = 'Recipients';
+            Caption = 'Created By';
+            DataClassification = CustomerContent;
+        }
+        field(16; "Created At"; DateTime)
+        {
+            Caption = 'Created At';
+            DataClassification = CustomerContent;
+        }
+        field(20; "Action type"; enum "EVT Status")
+        {
+            Caption = 'Action type';
+            DataClassification = CustomerContent;
+        }
+        field(21; "Performed By"; Text[50])
+        {
+            Caption = 'Performed By';
+            DataClassification = CustomerContent;
+        }
+        field(22; "Performed At"; DateTime)
+        {
+            Caption = 'Performed At';
             DataClassification = CustomerContent;
         }
     }
