@@ -26,7 +26,7 @@ table 70101 "EVT Customer License"
                 Rec.Validate("Customer Name")
             end;
         }
-        field(3; "Customer Name"; Text[100])
+        field(3; "Customer Name"; Text[75])
         {
             Caption = 'Customer Name';
             DataClassification = CustomerContent;
@@ -189,23 +189,23 @@ table 70101 "EVT Customer License"
         exit(true);
     end;
 
-    procedure CreateLicenseEntriesStausDownload(var LicenseEntry: Record "EVT License Entry")
-    begin
-        if LicenseEntry.IsEmpty() then
-            LicenseEntry.Insert();
-        LicenseEntry.FindLast();
-        LicenseEntry."Entry No." := LicenseEntry."Entry No." + 1;
-        LicenseEntry."License No." := Rec."License No.";
-        LicenseEntry."Customer No." := Rec."Customer No.";
-        LicenseEntry."Customer Name" := Rec."Customer Name";
-        LicenseEntry."Email address" := '';
-        LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
-        // LicenseEntry."Created At" := CurrentDateTime;
-        LicenseEntry."Action type" := Rec.Status::" Download";
-        LicenseEntry."Performed By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Performed By"));
-        LicenseEntry."Performed At" := CurrentDateTime;
-        LicenseEntry.Insert();
-    end;
+    // procedure CreateLicenseEntriesStausDownload(var LicenseEntry: Record "EVT License Entry")
+    // begin
+    //     if LicenseEntry.IsEmpty() then
+    //         LicenseEntry.Insert();
+    //     LicenseEntry.FindLast();
+    //     LicenseEntry."Entry No." := LicenseEntry."Entry No." + 1;
+    //     LicenseEntry."License No." := Rec."License No.";
+    //     LicenseEntry."Customer No." := Rec."Customer No.";
+    //     LicenseEntry."Customer Name" := Rec."Customer Name";
+    //     LicenseEntry."Email address" := '';
+    //     LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
+    //     // LicenseEntry."Created At" := CurrentDateTime;
+    //     LicenseEntry."Action type" := Rec.Status::" Download";
+    //     LicenseEntry."Performed By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Performed By"));
+    //     LicenseEntry."Performed At" := CurrentDateTime;
+    //     LicenseEntry.Insert();
+    // end;
 
     procedure CreateLicenseEntriesStausSent(var LicenseEntry: Record "EVT License Entry")
     begin
@@ -237,7 +237,7 @@ table 70101 "EVT Customer License"
         LicenseEntry."Email address" := '';
         LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
         LicenseEntry."Created At" := CurrentDateTime;
-        LicenseEntry."Action type" := Rec.Status::" Generated";
+        LicenseEntry."Action type" := Rec.Status::" Issued";
         LicenseEntry."Performed By" := '';
         LicenseEntry."Performed At" := 0DT;
         LicenseEntry.Insert();

@@ -100,12 +100,7 @@ page 70102 "EVT Customer License Card"
                     ApplicationArea = All;
                     trigger OnAssistEdit()
                     var
-                        LicenseEntry: Record "EVT License Entry";
-                        TempEmailItem: Record "Email Item" temporary;
-
-                        InStr: InStream;
-                        ToFile: Text;
-
+                        LicenseFileMgt: codeunit "EVT LIcense File Mgt";
                         Options: Text[30];
                         Selected: Integer;
                         ListOfOptionsLbl: label 'Download,Send,Exit';
@@ -113,33 +108,21 @@ page 70102 "EVT Customer License Card"
                         Notice: text;
                         KeyImportedLbl: label 'You''ve Downloaded a License File';
                         KeySentLbl: label 'You''ve Sent a License File';
-                        EmailScenario: Enum "Email Scenario";
-                        InStr2: InStream;
-                        AttachmentNameTxt: Label 'License.xml';
+                        NoLicenseErr: label 'There is no License generated';
                     begin
+                        if Rec.Status = Rec.Status::New then
+                            Error(NoLicenseErr);
                         Options := ListOfOptionsLbl;
                         Selected := Dialog.StrMenu(Options, 1, ChooseOptionLbl);
                         if Selected = 1 then begin
                             Notice := KeyImportedLbl;
-                            Rec.CalcFields("License File");
-                            Rec."License File".CreateInStream(InStr, TextEncoding::UTF8);
-                            ToFile := 'License.xml';
-                            DownloadFromStream(InStr, '', '', '', ToFile);
-                            if Rec.Status = Rec.Status::" Issued" then
-                                Rec.Status := "EVT Status"::" Sent";
-                            Rec.CreateLicenseEntriesStausDownload(LicenseEntry);
+                            LicenseFileMgt.DownloadLicense(Rec);
                             Message(Notice);
                         end;
                         if Selected = 2 then begin
                             Notice := KeySentLbl;
-                            Rec.CalcFields("License File");
-                            Rec."License File".CreateInStream(InStr2);
-                            TempEmailItem."Send to" := Rec.CustomerEmail;
-                            TempEmailItem.Subject := 'Your License';
-                            TempEmailItem.AddAttachment(InStr2, AttachmentNameTxt);
-                            TempEmailItem.Send(true, EmailScenario);
-                            Rec.Status := "EVT Status"::" Sent";
-                            Rec.CreateLicenseEntriesStausSent(LicenseEntry);
+                            LicenseFileMgt.SendLicense(Rec);
+                            Message(Notice);
                         end;
                         if Selected = 3 then exit;
                     end;
@@ -224,21 +207,10 @@ page 70102 "EVT Customer License Card"
                 Image = Email;
                 trigger OnAction()
                 var
-                    LicenseEntry: Record "EVT License Entry";
-                    TempEmailItem: Record "Email Item" temporary;
-                    EmailScenario: Enum "Email Scenario";
-                    InStr: InStream;
-                    AttachmentNameTxt: Label 'License.xml';
+                    CustomerLicense: Record "EVT Customer License";
+                    LicenseFileMgt: codeunit "EVT LIcense File Mgt";
                 begin
-                    Rec.CalcFields("License File");
-                    Rec."License File".CreateInStream(InStr);
-                    TempEmailItem."Send to" := Rec.CustomerEmail;
-                    TempEmailItem.Subject := 'Your License';
-                    TempEmailItem.AddAttachment(InStr, AttachmentNameTxt);
-                    TempEmailItem.Send(true, EmailScenario);
-                    Rec.Status := "EVT Status"::" Sent";
-                    Rec.CreateLicenseEntriesStausSent(LicenseEntry);
-
+                    LicenseFileMgt.SendLicense(CustomerLicense);
                 end;
             }
             action(LicenseEntries)
@@ -252,7 +224,8 @@ page 70102 "EVT Customer License Card"
                 Image = List;
                 ToolTip = 'View information about licenses issued for selected customer.';
                 RunObject = page "EVT License Entry List";
-                RunPageLink = "Customer No." = FIELD("Customer No.");
+                RunPageLink = "Customer No." = field("Customer No."),
+                            "License No." = field("License No.");
                 RunPageView = sorting("Entry No.")
                                   order(descending);
             }

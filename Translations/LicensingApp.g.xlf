@@ -163,6 +163,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table EVT License Setup - Field PublicKey - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1897714736 - Method 29770049 - NamedType 1885249418" size-unit="char" translate="yes" xml:space="preserve">
+          <source>License.xml</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit EVT LIcense File Mgt - Method SendLicense - NamedType AttachmentNameTxt</note>
+        </trans-unit>
         <trans-unit id="Page 1871836828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer License</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -303,10 +308,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control License File - Method OnAssistEdit - NamedType KeySentLbl</note>
         </trans-unit>
-        <trans-unit id="Page 3975096360 - Control 1977496271 - Method 2699620902 - NamedType 1885249418" size-unit="char" translate="yes" xml:space="preserve">
-          <source>License.xml</source>
+        <trans-unit id="Page 3975096360 - Control 1977496271 - Method 2699620902 - NamedType 2923600753" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is no License generated</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control License File - Method OnAssistEdit - NamedType AttachmentNameTxt</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Control License File - Method OnAssistEdit - NamedType NoLicenseErr</note>
         </trans-unit>
         <trans-unit id="Page 3975096360 - Control 280903592 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the License No. field.</source>
@@ -352,11 +357,6 @@
           <source>Send license</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Action &amp;SendEmail - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3975096360 - Action 670447066 - Method 1377591017 - NamedType 1885249418" size-unit="char" translate="yes" xml:space="preserve">
-          <source>License.xml</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - Action &amp;SendEmail - Method OnAction - NamedType AttachmentNameTxt</note>
         </trans-unit>
         <trans-unit id="Page 3975096360 - Action 883090068 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Generates Licensing Xml</source>
