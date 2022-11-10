@@ -26,7 +26,7 @@ table 70101 "EVT Customer License"
                 Rec.Validate("Customer Name")
             end;
         }
-        field(3; "Customer Name"; Text[75])
+        field(3; "Customer Name"; Text[100])
         {
             Caption = 'Customer Name';
             DataClassification = CustomerContent;
@@ -104,11 +104,12 @@ table 70101 "EVT Customer License"
             Caption = 'Encrypted Data';
             DataClassification = CustomerContent;
         }
-        field(15; CustomerEmail; Text[100])
+        field(15; CustomerEmail; Text[50])
         {
             Caption = 'Customer Email';
             DataClassification = CustomerContent;
         }
+
     }
     keys
     {
@@ -189,23 +190,23 @@ table 70101 "EVT Customer License"
         exit(true);
     end;
 
-    // procedure CreateLicenseEntriesStausDownload(var LicenseEntry: Record "EVT License Entry")
-    // begin
-    //     if LicenseEntry.IsEmpty() then
-    //         LicenseEntry.Insert();
-    //     LicenseEntry.FindLast();
-    //     LicenseEntry."Entry No." := LicenseEntry."Entry No." + 1;
-    //     LicenseEntry."License No." := Rec."License No.";
-    //     LicenseEntry."Customer No." := Rec."Customer No.";
-    //     LicenseEntry."Customer Name" := Rec."Customer Name";
-    //     LicenseEntry."Email address" := '';
-    //     LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
-    //     // LicenseEntry."Created At" := CurrentDateTime;
-    //     LicenseEntry."Action type" := Rec.Status::" Download";
-    //     LicenseEntry."Performed By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Performed By"));
-    //     LicenseEntry."Performed At" := CurrentDateTime;
-    //     LicenseEntry.Insert();
-    // end;
+    procedure CreateLicenseEntriesStausDownload(var LicenseEntry: Record "EVT License Entry")
+    begin
+        if LicenseEntry.IsEmpty() then
+            LicenseEntry.Insert();
+        LicenseEntry.FindLast();
+        LicenseEntry."Entry No." := LicenseEntry."Entry No." + 1;
+        LicenseEntry."License No." := Rec."License No.";
+        LicenseEntry."Customer No." := Rec."Customer No.";
+        LicenseEntry."Customer Name" := Rec."Customer Name";
+        LicenseEntry."Email address" := '';
+        LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
+        // LicenseEntry."Created At" := CurrentDateTime;
+        LicenseEntry."Action type" := Rec.Status::" Download";
+        LicenseEntry."Performed By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Performed By"));
+        LicenseEntry."Performed At" := CurrentDateTime;
+        LicenseEntry.Insert();
+    end;
 
     procedure CreateLicenseEntriesStausSent(var LicenseEntry: Record "EVT License Entry")
     begin
@@ -218,7 +219,6 @@ table 70101 "EVT Customer License"
         LicenseEntry."Customer Name" := Rec."Customer Name";
         LicenseEntry."Email address" := Rec.CustomerEmail;
         LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
-        // LicenseEntry."Created At" := CurrentDateTime;
         LicenseEntry."Action type" := Rec.Status::" Sent";
         LicenseEntry."Performed By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Performed By"));
         LicenseEntry."Performed At" := CurrentDateTime;
@@ -241,6 +241,39 @@ table 70101 "EVT Customer License"
         LicenseEntry."Performed By" := '';
         LicenseEntry."Performed At" := 0DT;
         LicenseEntry.Insert();
+    end;
+
+    procedure SendLicense()
+    var
+        LicenseEntry: Record "EVT License Entry";
+        TempEmailItem: Record "Email Item" temporary;
+        EmailScenario: Enum "Email Scenario";
+        LicenseInStr: InStream;
+        AttachmentNameTxt: Label 'License.xml';
+    begin
+        Rec.CalcFields("License File");
+        Rec."License File".CreateInStream(LicenseInStr);
+        TempEmailItem."Send to" := CustomerEmail;
+        TempEmailItem.Subject := 'Your License';
+        TempEmailItem.AddAttachment(LicenseInStr, AttachmentNameTxt);
+        TempEmailItem.Send(true, EmailScenario);
+        Rec.Status := "EVT Status"::" Sent";
+        Rec.CreateLicenseEntriesStausSent(LicenseEntry);
+    end;
+
+    procedure DownloadLicense()
+    var
+        LicenseEntry: Record "EVT License Entry";
+        InStr: InStream;
+        ToFile: Text;
+    begin
+        Rec.CalcFields("License File");
+        Rec."License File".CreateInStream(InStr, TextEncoding::UTF8);
+        ToFile := 'License.xml';
+        DownloadFromStream(InStr, '', '', '', ToFile);
+        if Rec.Status = Rec.Status::" Issued" then
+            Rec.Status := "EVT Status"::" Sent";
+        CreateLicenseEntriesStausDownload(LicenseEntry);
     end;
 
     var

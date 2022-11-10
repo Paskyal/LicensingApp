@@ -19,22 +19,16 @@ page 70100 "EVT License Setup"
                     ApplicationArea = All;
                     trigger OnAssistEdit()
                     var
-                        Options: Text[30];
                         Selected: Integer;
-                        ListOfOptionsLbl: label 'Import,Download,Exit';
-                        ChooseOptionLbl: label 'Choose one of the following options:';
-                        Notice: text;
                         PubKeyInStr: InStream;
                         PubKeyOutStr: OutStream;
-                        ExtFilterTxt: label 'Xml Files|*.xml';
-                        FileName: Text;
-                        SelectPubKeyTxt: label 'Select a Public Key file';
                         PubKeyInStr2: InStream;
+                        Notice: text;
+                        FileName: Text;
+                        Options: Text[30];
                         ToFile: Text;
-                        KeyImportedLbl: label 'You Imported a Public Key';
-                        KeyDownloadedLbl: label 'You Imported a Public Key';
                     begin
-                        Options := ListOfOptionsLbl;
+                        Options := OptionsImportDownloadLbl;
                         Selected := Dialog.StrMenu(Options, 1, ChooseOptionLbl);
                         if Selected = 1 then begin
                             Notice := KeyImportedLbl;
@@ -51,7 +45,6 @@ page 70100 "EVT License Setup"
                             DownloadFromStream(PubKeyInStr2, 'Dialog', '', '', ToFile);
                             Message(Notice);
                         end;
-                        if Selected = 3 then exit;
                     end;
                 }
                 field(PrivateKey; Rec.PrivateKey.HasValue)
@@ -61,29 +54,23 @@ page 70100 "EVT License Setup"
                     ApplicationArea = All;
                     trigger OnAssistEdit()
                     var
-                        Options: Text[30];
                         Selected: Integer;
-                        ListOfOptionsLbl: label 'Import,Exit';
-                        ChooseOptionLbl: label 'Choose one of the following options:';
-                        Notice: text;
                         PrivKeyInStr: InStream;
                         PivKeyOutStr: OutStream;
-                        ExtFilterTxt: label 'Xml Files|*.xml';
+                        Notice: text;
                         FileName: Text;
-                        SelectPrivKeyTxt: label 'Select a Private Key file';
-                        KeyImportedLbl: label 'You Imported a Private Key';
+                        Options: Text[30];
                     begin
-                        Options := ListOfOptionsLbl;
-                        Selected := Dialog.StrMenu(Options, 1, ChooseOptionLbl);
+                        Options := OptionImportLbl;
+                        Selected := Dialog.StrMenu(Options, 1);
                         if Selected = 1 then begin
-                            Notice := KeyImportedLbl;
+                            Notice := PrivKeyImportedLbl;
                             UploadIntoStream(SelectPrivKeyTxt, '', ExtFilterTxt, FileName, PrivKeyInStr);
                             Rec.PrivateKey.CreateOutStream(PivKeyOutStr);
                             CopyStream(PivKeyOutStr, PrivKeyInStr);
                             Message(Notice);
                             Rec.Modify();
                         end;
-                        if Selected = 2 then exit;
                     end;
                 }
                 field("Serial Nos"; Rec."License Serial Nos")
@@ -95,4 +82,14 @@ page 70100 "EVT License Setup"
             }
         }
     }
+    var
+        KeyImportedLbl: label 'You Imported a Public Key';
+        KeyDownloadedLbl: label 'You Imported a Public Key';
+        ExtFilterTxt: label 'Xml Files|*.xml';
+        SelectPubKeyTxt: label 'Select a Public Key file';
+        SelectPrivKeyTxt: label 'Select a Private Key file';
+        PrivKeyImportedLbl: label 'You Imported a Private Key';
+        ChooseOptionLbl: label 'Choose one of the following options:';
+        OptionsImportDownloadLbl: label 'Import,Download';
+        OptionImportLbl: label 'Import';
 }

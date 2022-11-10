@@ -18,6 +18,12 @@ page 70103 "EVT Customer License"
                     ToolTip = 'Specifies the value of the License No. field.';
                     ApplicationArea = All;
                 }
+                field(IsActive; IsActive)
+                {
+                    ToolTip = 'Specifies the value of the IsActive field.';
+                    ApplicationArea = All;
+                    Caption = 'Is Active';
+                }
                 field("Customer No."; Rec."Customer No.")
                 {
                     ToolTip = 'Specifies the value of the Customer No. field.';
@@ -79,6 +85,7 @@ page 70103 "EVT Customer License"
                     ToolTip = 'Specifies the value of the Status field.';
                     ApplicationArea = All;
                 }
+
             }
         }
     }
@@ -103,4 +110,13 @@ page 70103 "EVT Customer License"
             }
         }
     }
+    trigger OnAfterGetRecord()
+    begin
+        IsActive := false;
+        if ((Rec."Expiration Date" > Today) and (Rec."Starting Date" <= Today)) then
+            IsActive := true;
+    end;
+
+    var
+        IsActive: Boolean;
 }

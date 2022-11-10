@@ -7,7 +7,16 @@ xmlport 70100 "EVT LicenseExport"
     {
         tableelement(Root; "EVT Customer License")
         {
+            fieldelement(LicenseNo; Root."License No.")
+            {
+            }
             fieldelement(TenantID; Root."Tenant Id")
+            {
+            }
+            fieldelement(IssueDate; Root."Issue Date")
+            {
+            }
+            fieldelement(StartingDate; Root."Starting Date")
             {
             }
             fieldelement(ExpirationDate; Root."Expiration Date")

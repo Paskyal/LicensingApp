@@ -35,7 +35,6 @@ page 70102 "EVT Customer License Card"
                     ShowMandatory = true;
                     Editable = AbleToEdit;
                     trigger OnValidate()
-                    var
                     begin
                         CurrPage.Update(true);
                     end;
@@ -100,15 +99,9 @@ page 70102 "EVT Customer License Card"
                     ApplicationArea = All;
                     trigger OnAssistEdit()
                     var
-                        LicenseFileMgt: codeunit "EVT LIcense File Mgt";
                         Options: Text[30];
                         Selected: Integer;
-                        ListOfOptionsLbl: label 'Download,Send,Exit';
-                        ChooseOptionLbl: label 'Choose one of the following options:';
                         Notice: text;
-                        KeyImportedLbl: label 'You''ve Downloaded a License File';
-                        KeySentLbl: label 'You''ve Sent a License File';
-                        NoLicenseErr: label 'There is no License generated';
                     begin
                         if Rec.Status = Rec.Status::New then
                             Error(NoLicenseErr);
@@ -116,15 +109,14 @@ page 70102 "EVT Customer License Card"
                         Selected := Dialog.StrMenu(Options, 1, ChooseOptionLbl);
                         if Selected = 1 then begin
                             Notice := KeyImportedLbl;
-                            LicenseFileMgt.DownloadLicense(Rec);
+                            Rec.DownloadLicense();
                             Message(Notice);
                         end;
                         if Selected = 2 then begin
                             Notice := KeySentLbl;
-                            LicenseFileMgt.SendLicense(Rec);
+                            Rec.SendLicense();
                             Message(Notice);
                         end;
-                        if Selected = 3 then exit;
                     end;
                 }
                 field(Status; Rec.Status)
@@ -156,15 +148,14 @@ page 70102 "EVT Customer License Card"
                     CustomerLicense: Record "EVT Customer License";
                     LicenseSetup: Record "EVT License Setup";
                     LicenseEntry: Record "EVT License Entry";
-                    Convert: Codeunit "Base64 Convert";
-                    TempBlob: Codeunit "Temp Blob";
+                    Convert: codeunit "Base64 Convert";
+                    TempBlob: codeunit "Temp Blob";
                     CryptographyManagement: codeunit "Cryptography Management";
                     HashAlgorithm: enum "Hash Algorithm";
                     SignatureBase64OutStr: OutStream;
                     SignatureOutStr: OutStream;
                     SignatureInStr: InStream;
                     XmlOutStr: OutStream;
-                    LicenseAlreadyGenErr: label 'License file has already been generated!';
                     PrivKeyXmlString: Text;
                     SigningString: Text;
                     SignatureBase64Txt: Text;
@@ -186,12 +177,11 @@ page 70102 "EVT Customer License Card"
                     Rec.Modify();
                     Rec."License File".CreateOutStream(XmlOutStr);
                     CustomerLicense.SetRange("License No.", Rec."License No.");
-                    Xmlport.Export(Xmlport::"EVT LicenseExport", XmlOutStr, CustomerLicense);
                     Rec.Status := "EVT Status"::" Issued";
                     Rec."Issue Date" := Today;
-                    Rec.CreateLicenseEntriesGenerateLicense(LicenseEntry);
-
                     Rec.Modify();
+                    Xmlport.Export(Xmlport::"EVT LicenseExport", XmlOutStr, CustomerLicense);
+                    Rec.CreateLicenseEntriesGenerateLicense(LicenseEntry);
                     AbleToEdit := false;
                 end;
             }
@@ -206,11 +196,8 @@ page 70102 "EVT Customer License Card"
                 Caption = 'Send license';
                 Image = Email;
                 trigger OnAction()
-                var
-                    CustomerLicense: Record "EVT Customer License";
-                    LicenseFileMgt: codeunit "EVT LIcense File Mgt";
                 begin
-                    LicenseFileMgt.SendLicense(CustomerLicense);
+                    Rec.SendLicense();
                 end;
             }
             action(LicenseEntries)
@@ -240,4 +227,10 @@ page 70102 "EVT Customer License Card"
 
     var
         AbleToEdit: Boolean;
+        ListOfOptionsLbl: label 'Download,Send';
+        ChooseOptionLbl: label 'Choose one of the following options:';
+        LicenseAlreadyGenErr: label 'License file has already been generated!';
+        KeyImportedLbl: label 'You''ve Downloaded a License File';
+        KeySentLbl: label 'You''ve Sent a License File';
+        NoLicenseErr: label 'There is no License generated';
 }

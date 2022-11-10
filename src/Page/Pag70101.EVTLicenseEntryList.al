@@ -16,6 +16,7 @@ page 70101 "EVT License Entry List"
                 {
                     ToolTip = 'Specifies the value of the Entry No. field.';
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("License No."; Rec."License No.")
                 {

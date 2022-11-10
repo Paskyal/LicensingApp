@@ -18,8 +18,4 @@ enum 70100 "EVT Status"
     {
         Caption = ' Downloaded';
     }
-    value(4; " Generated")
-    {
-        Caption = ' Generated';
-    }
 }

@@ -22,7 +22,7 @@ table 70102 "EVT License Entry"
             TableRelation = Customer;
             DataClassification = CustomerContent;
         }
-        field(13; "Customer Name"; Text[75])
+        field(13; "Customer Name"; Text[100])
         {
             Caption = 'Customer Name';
             DataClassification = CustomerContent;
