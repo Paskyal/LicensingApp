@@ -268,6 +268,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - NamedType ChooseOptionLbl</note>
         </trans-unit>
+        <trans-unit id="Page 3975096360 - NamedType 2129233030" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Email is not specified</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - NamedType CustomerEmailIsEmptyErr</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - NamedType 2469818627" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Name is empty</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - NamedType CustomerNameIsEmptyErr</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - NamedType 2802532079" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Expiration Date is not specified</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - NamedType ExpirationDateIsEmptyErr</note>
+        </trans-unit>
         <trans-unit id="Page 3975096360 - NamedType 1099871011" size-unit="char" translate="yes" xml:space="preserve">
           <source>You've Downloaded a License File</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -292,6 +307,16 @@
           <source>There is no License generated</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - NamedType NoLicenseErr</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - NamedType 3874157106" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Starting Date is not specified</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - NamedType StartingDateIsEmptyErr</note>
+        </trans-unit>
+        <trans-unit id="Page 3975096360 - NamedType 1608436589" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tenant Id is not specified</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License Card - NamedType TenantIdIsEmptyErr</note>
         </trans-unit>
         <trans-unit id="Page 3975096360 - Control 1171137197 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Customer Name field.</source>

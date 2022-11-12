@@ -23,6 +23,7 @@ page 70102 "EVT Customer License Card"
                     ToolTip = 'Specifies the value of the Customer No. field.';
                     ApplicationArea = All;
                     Editable = AbleToEdit;
+                    ShowMandatory = true;
                     trigger OnValidate()
                     begin
                         CurrPage.Update(true);
@@ -32,7 +33,6 @@ page 70102 "EVT Customer License Card"
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
                     ApplicationArea = All;
-                    ShowMandatory = true;
                     Editable = AbleToEdit;
                     trigger OnValidate()
                     begin
@@ -49,6 +49,7 @@ page 70102 "EVT Customer License Card"
                     ToolTip = 'Specifies the value of the Customer Email field.';
                     ApplicationArea = All;
                     Editable = AbleToEdit;
+                    ShowMandatory = true;
                 }
                 field("Issue Date"; Rec."Issue Date")
                 {
@@ -61,18 +62,21 @@ page 70102 "EVT Customer License Card"
                     ToolTip = 'Specifies the value of the Starting Date field.';
                     ApplicationArea = All;
                     Editable = AbleToEdit;
+                    ShowMandatory = true;
                 }
                 field("Expiration Date"; Rec."Expiration Date")
                 {
                     ToolTip = 'Specifies the value of the Expiration Date field.';
                     ApplicationArea = All;
                     Editable = AbleToEdit;
+                    ShowMandatory = true;
                 }
                 field("Tenant Id"; Rec."Tenant Id")
                 {
                     ToolTip = 'Specifies the value of the Tenant Id field.';
                     ApplicationArea = All;
                     Editable = AbleToEdit;
+                    ShowMandatory = true;
                 }
                 field("Module 1"; Rec."Module 1")
                 {
@@ -163,6 +167,17 @@ page 70102 "EVT Customer License Card"
                 begin
                     if Rec."License File".HasValue then
                         Error(LicenseAlreadyGenErr);
+                    if Rec."Customer Name" = '' then
+                        Error(CustomerNameIsEmptyErr);
+                    if Rec.CustomerEmail = '' then
+                        Error(CustomerEmailIsEmptyErr);
+                    if Rec."Starting Date" = 0D then
+                        Error(StartingDateIsEmptyErr);
+                    if Rec."Expiration Date" = 0D then
+                        Error(ExpirationDateIsEmptyErr);
+                    if Rec."Tenant Id" = '' then
+                        Error(TenantIdIsEmptyErr);
+
                     LicenseSetup.FindFirst();
                     LicenseSetup.CalcFields(PrivateKey);
                     LicenseSetup.PrivateKey.CreateInStream(PrivKeyInStr);
@@ -233,4 +248,9 @@ page 70102 "EVT Customer License Card"
         KeyImportedLbl: label 'You''ve Downloaded a License File';
         KeySentLbl: label 'You''ve Sent a License File';
         NoLicenseErr: label 'There is no License generated';
+        CustomerNameIsEmptyErr: label 'Customer Name is empty';
+        CustomerEmailIsEmptyErr: label 'Customer Email is not specified';
+        StartingDateIsEmptyErr: label 'Starting Date is not specified';
+        ExpirationDateIsEmptyErr: label 'Expiration Date is not specified';
+        TenantIdIsEmptyErr: label 'Tenant Id is not specified';
 }
