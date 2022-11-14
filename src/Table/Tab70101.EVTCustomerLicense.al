@@ -201,7 +201,6 @@ table 70101 "EVT Customer License"
         LicenseEntry."Customer Name" := Rec."Customer Name";
         LicenseEntry."Email address" := '';
         LicenseEntry."Created By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Created By"));
-        // LicenseEntry."Created At" := CurrentDateTime;
         LicenseEntry."Action type" := Rec.Status::" Download";
         LicenseEntry."Performed By" := CopyStr(UserId(), 1, MaxStrLen(LicenseEntry."Performed By"));
         LicenseEntry."Performed At" := CurrentDateTime;
@@ -276,7 +275,63 @@ table 70101 "EVT Customer License"
         CreateLicenseEntriesStausDownload(LicenseEntry);
     end;
 
+    procedure GenerateLicense()
+    var
+        LicenseEntry: Record "EVT License Entry";
+        Convert: codeunit "Base64 Convert";
+        TempBlob: codeunit "Temp Blob";
+        CryptographyManagement: codeunit "Cryptography Management";
+        HashAlgorithm: enum "Hash Algorithm";
+        SignatureBase64OutStr: OutStream;
+        SignatureOutStr: OutStream;
+        SignatureInStr: InStream;
+        XmlOutStr: OutStream;
+        PrivKeyXmlString: Text;
+        SigningString: Text;
+        SignatureBase64Txt: Text;
+        PrivKeyInStr: InStream;
+    begin
+        if Rec."License File".HasValue then
+            Error(LicenseAlreadyGenErr);
+        if Rec."Customer Name" = '' then
+            Error(CustomerNameIsEmptyErr);
+        if Rec.CustomerEmail = '' then
+            Error(CustomerEmailIsEmptyErr);
+        if Rec."Starting Date" = 0D then
+            Error(StartingDateIsEmptyErr);
+        if Rec."Expiration Date" = 0D then
+            Error(ExpirationDateIsEmptyErr);
+        if Rec."Tenant Id" = '' then
+            Error(TenantIdIsEmptyErr);
+
+        LicenseSetup.FindFirst();
+        LicenseSetup.CalcFields(PrivateKey);
+        LicenseSetup.PrivateKey.CreateInStream(PrivKeyInStr);
+        PrivKeyInStr.Read(PrivKeyXmlString);
+        SigningString := Rec."Tenant Id" + format(Rec."Expiration Date");
+        TempBlob.CreateOutStream(SignatureOutStr);
+        CryptographyManagement.SignData(SigningString, PrivKeyXmlString, HashAlgorithm::SHA256, SignatureOutStr);
+        TempBlob.CreateInStream(SignatureInStr);
+        SignatureBase64Txt := Convert.ToBase64(SignatureInStr);
+        Rec.SignatureBase64.CreateOutStream(SignatureBase64OutStr);
+        SignatureBase64OutStr.Write(SignatureBase64Txt);
+        Rec.Modify();
+        Rec."License File".CreateOutStream(XmlOutStr);
+        Rec.SetRange("License No.", Rec."License No.");
+        Rec.Status := "EVT Status"::" Issued";
+        Rec."Issue Date" := Today;
+        Rec.Modify();
+        Xmlport.Export(Xmlport::"EVT LicenseExport", XmlOutStr, Rec);
+        Rec.CreateLicenseEntriesGenerateLicense(LicenseEntry);
+    end;
+
     var
         LicenseSetup: Record "EVT License Setup";
         NoSeriesMgt: codeunit NoSeriesManagement;
+        CustomerNameIsEmptyErr: label 'Customer Name is empty';
+        CustomerEmailIsEmptyErr: label 'Customer Email is not specified';
+        StartingDateIsEmptyErr: label 'Starting Date is not specified';
+        ExpirationDateIsEmptyErr: label 'Expiration Date is not specified';
+        TenantIdIsEmptyErr: label 'Tenant Id is not specified';
+        LicenseAlreadyGenErr: label 'License file has already been generated!';
 }
