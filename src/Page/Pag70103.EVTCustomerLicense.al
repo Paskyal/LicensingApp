@@ -18,7 +18,7 @@ page 70103 "EVT Customer License"
                     ToolTip = 'Specifies the value of the License No. field.';
                     ApplicationArea = All;
                 }
-                field(IsActive; IsActive)
+                field(Active; Active)
                 {
                     ToolTip = 'Specifies the value of the IsActive field.';
                     ApplicationArea = All;
@@ -112,11 +112,11 @@ page 70103 "EVT Customer License"
     }
     trigger OnAfterGetRecord()
     begin
-        IsActive := false;
+        Active := false;
         if ((Rec."Expiration Date" > Today) and (Rec."Starting Date" <= Today)) then
-            IsActive := true;
+            Active := true;
     end;
 
     var
-        IsActive: Boolean;
+        Active: Boolean;
 }

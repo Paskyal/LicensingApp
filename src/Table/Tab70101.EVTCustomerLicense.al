@@ -109,6 +109,12 @@ table 70101 "EVT Customer License"
             Caption = 'Customer Email';
             DataClassification = CustomerContent;
         }
+        // field(16; Active; Boolean)
+        // {
+        //     FieldClass = FlowField;
+        //     CalcFormula = exist("EVT Customer License" where ("License No." = field("License No."), 
+        //                                                     "Expiration Date" < Today)
+        // }
 
     }
     keys
@@ -293,16 +299,11 @@ table 70101 "EVT Customer License"
     begin
         if Rec."License File".HasValue then
             Error(LicenseAlreadyGenErr);
-        if Rec."Customer Name" = '' then
-            Error(CustomerNameIsEmptyErr);
-        if Rec.CustomerEmail = '' then
-            Error(CustomerEmailIsEmptyErr);
-        if Rec."Starting Date" = 0D then
-            Error(StartingDateIsEmptyErr);
-        if Rec."Expiration Date" = 0D then
-            Error(ExpirationDateIsEmptyErr);
-        if Rec."Tenant Id" = '' then
-            Error(TenantIdIsEmptyErr);
+        Rec.TestField("Customer Name");
+        Rec.TestField(CustomerEmail);
+        Rec.TestField("Starting Date");
+        Rec.TestField("Expiration Date");
+        Rec.TestField("Tenant Id");
 
         LicenseSetup.FindFirst();
         LicenseSetup.CalcFields(PrivateKey);
@@ -328,10 +329,6 @@ table 70101 "EVT Customer License"
     var
         LicenseSetup: Record "EVT License Setup";
         NoSeriesMgt: codeunit NoSeriesManagement;
-        CustomerNameIsEmptyErr: label 'Customer Name is empty';
-        CustomerEmailIsEmptyErr: label 'Customer Email is not specified';
-        StartingDateIsEmptyErr: label 'Starting Date is not specified';
-        ExpirationDateIsEmptyErr: label 'Expiration Date is not specified';
         TenantIdIsEmptyErr: label 'Tenant Id is not specified';
         LicenseAlreadyGenErr: label 'License file has already been generated!';
 }
