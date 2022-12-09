@@ -84,7 +84,7 @@ page 70100 "EVT License Setup"
     }
     var
         KeyImportedLbl: label 'You Imported a Public Key';
-        KeyDownloadedLbl: label 'You Imported a Public Key';
+        KeyDownloadedLbl: label 'You Downloaded a Public Key';
         ExtFilterTxt: label 'Xml Files|*.xml';
         SelectPubKeyTxt: label 'Select a Public Key file';
         SelectPrivKeyTxt: label 'Select a Private Key file';

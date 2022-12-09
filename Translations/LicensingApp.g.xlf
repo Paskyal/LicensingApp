@@ -8,30 +8,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 1871836828 - NamedType 2129233030" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Customer Email is not specified</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - NamedType CustomerEmailIsEmptyErr</note>
-        </trans-unit>
-        <trans-unit id="Table 1871836828 - NamedType 2469818627" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Customer Name is empty</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - NamedType CustomerNameIsEmptyErr</note>
-        </trans-unit>
-        <trans-unit id="Table 1871836828 - NamedType 2802532079" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Expiration Date is not specified</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - NamedType ExpirationDateIsEmptyErr</note>
-        </trans-unit>
         <trans-unit id="Table 1871836828 - NamedType 1603261984" size-unit="char" translate="yes" xml:space="preserve">
           <source>License file has already been generated!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - NamedType LicenseAlreadyGenErr</note>
-        </trans-unit>
-        <trans-unit id="Table 1871836828 - NamedType 3874157106" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Starting Date is not specified</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table EVT Customer License - NamedType StartingDateIsEmptyErr</note>
         </trans-unit>
         <trans-unit id="Table 1871836828 - NamedType 1608436589" size-unit="char" translate="yes" xml:space="preserve">
           <source>Tenant Id is not specified</source>
@@ -203,6 +183,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1871836828 - Control 1090351696 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the IsActive field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Control Active - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1871836828 - Control 1090351696 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Is Active</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Control Active - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1871836828 - Control 1171137197 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Customer Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -217,16 +207,6 @@
           <source>Specifies the value of the Expiration Date field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Control Expiration Date - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1871836828 - Control 3276803522 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the IsActive field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Control IsActive - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1871836828 - Control 3276803522 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Is Active</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page EVT Customer License - Control IsActive - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1871836828 - Control 219695063 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Issue Date field.</source>
